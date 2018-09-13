@@ -40,6 +40,36 @@ class LinkedList{
         }
         this.size++;
     }
+    insertAt(element,pos){
+        if(pos>0 && pos>this.size){
+            return false;
+        }else{
+            //create a new node
+            var node=new Node(element);
+            var curr,prev;
+
+            curr=this.head;
+            //adding the element to first  index
+            if(pos==0){
+                node.next=this.head;
+                this.head=node;
+            }else{
+                curr=this.head;
+                var it=0;
+                //iterate to the list find position
+                while(it<pos){
+                    it++;
+                    prev=curr;
+                    curr=curr.next;
+                }
+                //adding an element
+                node.next=curr;
+                prev.next=node;
+            }
+            this.size++;
+        }
+
+    }
 
     //Printing List
     printList(){
@@ -60,6 +90,8 @@ var ll=new LinkedList();
 ll.add(10);
 ll.add(11);
 ll.add(13);
+ll.insertAt(5,1);
+ll.insertAt(6,3);
 ll.printList();
 ll.sizeList();
 
